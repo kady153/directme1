@@ -214,9 +214,11 @@ def begin_chat(guide_id):
     userinfo=login_session['profile']
     DBSession = sessionmaker(bind=engine)
     session = DBSession()
-    room_begin=room_guide(room=userinfo['user_id']+guide_id,guide_id=guide_id)
-    session.add(room_begin)
-    session.commit()
+    check=session.query(room_guide).filter_by(room=userinfo['user_id']+guide_id).first()
+    if check == None:
+        room_begin=room_guide(room=userinfo['user_id']+guide_id,guide_id=guide_id)
+        session.add(room_begin)
+        session.commit()
     return redirect(url_for('chat',guide_id=guide_id))
 @app.route('/callback')
 def callback_handling():
