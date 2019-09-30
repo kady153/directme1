@@ -81,7 +81,7 @@
                <div class="btn-group">
 
                  {% if i.id==userinfo.id%}
-                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                   <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href='{{url_for('editprofile')}}'">Edit</button>
                   {% else %} 
                   <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href='{{url_for('begin_chat',guide_id=i.id)}}'">chat</button>
                {% endif %}    
